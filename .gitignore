@@ -4,3 +4,9 @@ obj
 
 # mstest test results
 TestResults
+
+# visual studio files
+*.suo
+
+# resharper
+_ReSharper.take-a-break
