@@ -16,42 +16,42 @@ namespace take_a_break
             InitializeComponent();
         }
 
-        private bool _inWorkTimeCallback = false;
         private readonly Settings _settings = new Settings();
 
         public Settings Settings { get { return _settings.Clone(); } }
 
         private void UpdateSettings(object sender, EventArgs e)
         {
-            if (_inWorkTimeCallback)
-                return;
-
-            _inWorkTimeCallback = true;
-
             int workTimeMinutes = (int)_workTimeMinutes.Value;
             int workTimeSeconds = (int)_workTimeSeconds.Value;
             int breakTimeMinutes = (int)_breakTimeMinutes.Value;
             int breakTimeSeconds = (int)_breakTimeSeconds.Value;
 
-            workTimeMinutes += workTimeSeconds/60;
-            workTimeSeconds %= 60;
+            _settings.WorkTime = new TimeSpan(hours: 0, minutes: workTimeMinutes, seconds: workTimeSeconds);
+            _settings.BreakTime = new TimeSpan(hours: 0, minutes: breakTimeMinutes, seconds: breakTimeSeconds);
+        }
+        
+        private void OkButtonClick(object sender, EventArgs e)
+        {
+            bool workTimeToShort = (_settings.WorkTime.CompareTo(TimeSpan.FromSeconds(10)) < 0);
+            bool breakTimeToShort = (_settings.BreakTime.CompareTo(TimeSpan.FromSeconds(10)) < 0);
 
-            breakTimeMinutes += breakTimeSeconds / 60;
-            breakTimeSeconds %= 60;
+            if (workTimeToShort)
+            {
+                this.DialogResult = DialogResult.None;
+                MessageBox.Show("You really need to work at least 10 seconds!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            if (_workTimeMinutes.Value != workTimeMinutes)
-                _workTimeMinutes.Value = workTimeMinutes;
+            if (breakTimeToShort)
+            {
+                this.DialogResult = DialogResult.None;
+                MessageBox.Show("Your break should at least be 10 seconds long!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            if (_workTimeSeconds.Value != workTimeSeconds)
-                _workTimeSeconds.Value = workTimeSeconds;
-
-            if (_breakTimeMinutes.Value != breakTimeMinutes)
-                _breakTimeMinutes.Value = breakTimeMinutes;
-
-            if (_breakTimeSeconds.Value != breakTimeSeconds)
-                _breakTimeSeconds.Value = breakTimeSeconds;
-
-            _inWorkTimeCallback = false;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
     }

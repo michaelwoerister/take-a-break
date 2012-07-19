@@ -50,7 +50,7 @@
             this._workTimeSeconds.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this._workTimeSeconds.Location = new System.Drawing.Point(173, 12);
             this._workTimeSeconds.Maximum = new decimal(new int[] {
-            1000,
+            59,
             0,
             0,
             0});
@@ -95,7 +95,7 @@
             this._breakTimeSeconds.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this._breakTimeSeconds.Location = new System.Drawing.Point(173, 40);
             this._breakTimeSeconds.Maximum = new decimal(new int[] {
-            1000,
+            59,
             0,
             0,
             0});
@@ -184,10 +184,10 @@
             this._okButton.TabIndex = 10;
             this._okButton.Text = "OK";
             this._okButton.UseVisualStyleBackColor = true;
+            this._okButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
             // StartForm
             // 
-            this.AcceptButton = this._okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(270, 98);

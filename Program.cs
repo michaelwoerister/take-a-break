@@ -16,19 +16,19 @@ namespace take_a_break
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            var dialogResult = DialogResult.None;
+            Settings settings = null;
+
             using (var startForm = new StartForm())
             {
-                if (startForm.ShowDialog() == DialogResult.OK)
-                {
-                    Start(startForm.Settings);
-                }
+                dialogResult = startForm.ShowDialog();
+                settings = startForm.Settings;
             }
-        }
 
-        static void Start(Settings settings)
-        {
-            Console.WriteLine(settings.WorkTime);
-            Console.WriteLine(settings.BreakTime);
-        }
+            if (dialogResult == DialogResult.OK)
+            {
+                Coordinator.Start(settings);
+            }
+        } 
     }
 }
