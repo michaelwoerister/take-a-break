@@ -39,7 +39,7 @@ namespace take_a_break
 
             foreach (var screen in screens)
             {
-                var blackoutform = new BlackOutForm(screen.Key, screen.Value);
+                var blackoutform = new BlackOutForm(screen.Value, breakTime);
                 blackoutform.Show();
                 
                 if (screen.Key.Primary)
@@ -52,6 +52,10 @@ namespace take_a_break
         private static Dictionary<Screen, Point> PickScreens()
         {
             var screens = new Dictionary<Screen, Point>();
+
+            var primaryScreenPoint = Screen.PrimaryScreen.WorkingArea.Location;
+            primaryScreenPoint.Offset(10, 10);
+            screens[Screen.PrimaryScreen] = primaryScreenPoint;
 
             for (int y = 0; y < Screen.PrimaryScreen.Bounds.Height; y += 20)
             {
