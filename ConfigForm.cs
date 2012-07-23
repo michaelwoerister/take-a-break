@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace take_a_break
 {
-    partial class StartForm : Form
+    partial class ConfigForm : Form
     {
-        public StartForm()
+        public ConfigForm()
         {
             InitializeComponent();
         }

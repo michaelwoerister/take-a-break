@@ -15,11 +15,11 @@ namespace take_a_break
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            
             var dialogResult = DialogResult.None;
             Settings settings = null;
 
-            using (var startForm = new StartForm())
+            using (var startForm = new ConfigForm())
             {
                 dialogResult = startForm.ShowDialog();
                 settings = startForm.Settings;
@@ -27,7 +27,7 @@ namespace take_a_break
 
             if (dialogResult == DialogResult.OK)
             {
-                Coordinator.Start(settings);
+                Application.Run(new CoordinatorForm(settings));
             }
         } 
     }
