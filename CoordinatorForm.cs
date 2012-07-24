@@ -24,6 +24,8 @@ namespace take_a_break
             _workTime = settings.WorkTime;
             _breakTime = settings.BreakTime;
             _workPeriodStart = DateTime.Now;
+
+            this.Visible = false;
         }
         
         public void UpdateSettings(Settings settings)
@@ -95,6 +97,11 @@ namespace take_a_break
             }
 
             return screens;
+        }
+
+        private void ExitToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

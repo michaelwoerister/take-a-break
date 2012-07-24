@@ -46,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(326, 256);
             this.ControlBox = false;
             this.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "BlackOutForm";
