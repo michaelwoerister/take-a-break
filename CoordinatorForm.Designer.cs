@@ -76,6 +76,7 @@
             this.ShowInTaskbar = false;
             this.Text = "take-a-break coordinator form";
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.Load += new System.EventHandler(this.CoordinatorFormLoad);
             this._notifyIconContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
